@@ -38,6 +38,10 @@ const Journal = {
     // Save trade
     document.getElementById('btn-save-trade').addEventListener('click', () => this.saveTrade());
 
+    // Auto-calculate R values from $ amounts
+    document.getElementById('trade-risk-usd').addEventListener('input', () => this.autoCalcR());
+    document.getElementById('trade-reward-usd').addEventListener('input', () => this.autoCalcR());
+
     // Filters
     ['filter-pair', 'filter-session', 'filter-result', 'filter-from', 'filter-to'].forEach(id => {
       document.getElementById(id).addEventListener('change', () => this.renderTable());
@@ -48,6 +52,27 @@ const Journal = {
       });
       this.renderTable();
     });
+  },
+
+  /* ── Auto-calc R-multiples from $ amounts ───── */
+  autoCalcR() {
+    const riskUSD = parseFloat(document.getElementById('trade-risk-usd').value);
+    const rewUSD  = parseFloat(document.getElementById('trade-reward-usd').value);
+
+    const riskRInput = document.getElementById('trade-risk-r');
+    const rewRInput  = document.getElementById('trade-reward-r');
+
+    // Risk always defines 1R
+    if (riskUSD > 0) {
+      riskRInput.value = '1';
+    }
+
+    // Reward R = Reward$ / Risk$
+    if (riskUSD > 0 && rewUSD > 0) {
+      rewRInput.value = (rewUSD / riskUSD).toFixed(2);
+    } else if (!rewUSD) {
+      rewRInput.value = '';
+    }
   },
 
   /* ── Modal open/close ───────────────────── */
