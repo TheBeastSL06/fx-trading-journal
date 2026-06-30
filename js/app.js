@@ -22,7 +22,18 @@ const App = {
       this.loadAll();
     }
 
+    this.registerServiceWorker();
+
     document.getElementById('btn-reload').addEventListener('click', () => this.loadAll());
+  },
+
+  /* ── Service Worker (no-op, just for installability) ────── */
+  registerServiceWorker() {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js').catch(err => {
+        console.warn('Service worker registration failed:', err);
+      });
+    }
   },
 
   /* ── Navigation ──────────────────────────── */
