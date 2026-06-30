@@ -1,0 +1,19 @@
+{
+  "name": "FX Trading Journal",
+  "short_name": "FX Journal",
+  "description": "Track your forex trades, performance stats, and account growth.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0d0f18",
+  "theme_color": "#0d0f18",
+  "icons": [
+    {
+      "src": "icons/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
