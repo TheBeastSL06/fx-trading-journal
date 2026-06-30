@@ -219,10 +219,9 @@ const Dashboard = {
     ];
     defs.forEach(({ id, period }) => {
       const filtered = Utils.filterByPeriod(STATE.trades, period);
-      const el = document.getElementById(id);
-      if (!el) return;
-      const body = el.querySelector('.summary-body');
-      const s    = Utils.calcStats(filtered);
+      const body = document.getElementById(id);
+      if (!body) return;
+      const s = Utils.calcStats(filtered);
       if (!s) {
         body.innerHTML = '<span class="dim">No trades</span>';
         return;
